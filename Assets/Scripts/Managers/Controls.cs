@@ -38,8 +38,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Jump"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Button"",
                     ""id"": ""79b5042c-32fa-49bb-a141-597fd1d84e58"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Equip-unequip"",
+                    ""type"": ""Button"",
+                    ""id"": ""3c871e30-f63f-4382-8887-13e01a487e1c"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -121,6 +130,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e0421075-b18d-4924-a3de-82c9c386a36b"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Equip-unequip"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -264,6 +284,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Game = asset.FindActionMap("Game", throwIfNotFound: true);
         m_Game_Movement = m_Game.FindAction("Movement", throwIfNotFound: true);
         m_Game_Jump = m_Game.FindAction("Jump", throwIfNotFound: true);
+        m_Game_Equipunequip = m_Game.FindAction("Equip-unequip", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Newaction = m_UI.FindAction("New action", throwIfNotFound: true);
@@ -334,12 +355,14 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private List<IGameActions> m_GameActionsCallbackInterfaces = new List<IGameActions>();
     private readonly InputAction m_Game_Movement;
     private readonly InputAction m_Game_Jump;
+    private readonly InputAction m_Game_Equipunequip;
     public struct GameActions
     {
         private @Controls m_Wrapper;
         public GameActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Game_Movement;
         public InputAction @Jump => m_Wrapper.m_Game_Jump;
+        public InputAction @Equipunequip => m_Wrapper.m_Game_Equipunequip;
         public InputActionMap Get() { return m_Wrapper.m_Game; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -355,6 +378,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
+            @Equipunequip.started += instance.OnEquipunequip;
+            @Equipunequip.performed += instance.OnEquipunequip;
+            @Equipunequip.canceled += instance.OnEquipunequip;
         }
 
         private void UnregisterCallbacks(IGameActions instance)
@@ -365,6 +391,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
+            @Equipunequip.started -= instance.OnEquipunequip;
+            @Equipunequip.performed -= instance.OnEquipunequip;
+            @Equipunequip.canceled -= instance.OnEquipunequip;
         }
 
         public void RemoveCallbacks(IGameActions instance)
@@ -486,6 +515,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnEquipunequip(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

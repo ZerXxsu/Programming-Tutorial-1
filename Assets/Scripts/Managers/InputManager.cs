@@ -19,6 +19,18 @@ public static class InputManager
             Debug.Log("You Are Moving! ");
         };
 
+        _controls.Game.Jump.started += hello =>
+        {
+            Debug.Log("You have jumped!");
+            myPlayer.Jump();
+        };
+
+        _controls.Game.Equipunequip.started += hello =>
+        {
+            Debug.Log("I have pressed E!");
+            myPlayer.WeaponEquip();
+        };
+
         _controls.Permenant.Enable();
     }
 
@@ -36,10 +48,5 @@ public static class InputManager
 
 
     }
-
-
-
-
-
 
 }

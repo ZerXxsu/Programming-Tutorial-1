@@ -16,8 +16,17 @@
                 },
                 {
                     "name": "Jump",
-                    "type": "PassThrough",
+                    "type": "Button",
                     "id": "79b5042c-32fa-49bb-a141-597fd1d84e58",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Equip-unequip",
+                    "type": "Button",
+                    "id": "3c871e30-f63f-4382-8887-13e01a487e1c",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -99,6 +108,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e0421075-b18d-4924-a3de-82c9c386a36b",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Equip-unequip",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
