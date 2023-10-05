@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Player: MonoBehaviour
@@ -14,6 +15,7 @@ public class Player: MonoBehaviour
     [SerializeField] private float Cooldown;
     float lastjump;
     private Rigidbody rb;
+   
 
     //Bool value for checking if my weapon is equipped
     private bool isWeaponEquipped = false;

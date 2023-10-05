@@ -16,18 +16,18 @@ public static class InputManager
         {
 
             myPlayer.SetMovementDirection(jeff.ReadValue<Vector3>());
-            Debug.Log("You Are Moving! ");
+            //Debug.Log("You Are Moving! ");
         };
 
         _controls.Game.Jump.started += hello =>
         {
-            Debug.Log("You have jumped!");
+            //Debug.Log("You have jumped!");
             myPlayer.Jump();
         };
 
         _controls.Game.Equipunequip.started += hello =>
         {
-            Debug.Log("I have pressed E!");
+            //Debug.Log("I have pressed E!");
             myPlayer.WeaponEquip();
         };
 
